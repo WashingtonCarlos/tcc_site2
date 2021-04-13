@@ -8,6 +8,9 @@ use Illuminate\Support\Facades\Validator;
 
 class UsuarioAuthController extends Controller
 {
+    function login(){
+        return view('auth.login');
+    }
     public function registro(Request $request){
         $validation = Validator::make($request->all(),[
             'cpf' => 'required|max:50',

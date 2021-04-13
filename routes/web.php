@@ -14,6 +14,8 @@ use App\Http\Controllers\UsuarioAuthController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('auth.login');
+// });
+
+Route::get('/',[UsuarioAuthController::class, 'login']);

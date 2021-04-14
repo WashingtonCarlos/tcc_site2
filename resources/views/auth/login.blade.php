@@ -1,7 +1,7 @@
 @extends('master')
 @section('content')
     <form class="form-signin" method ="POST" action = "{{url('/logando')}}">
-    {{csrf_field()}}
+    @csrf
       <h1 class="h3 mb-3 font-weight-normal text-center">Faça login</h1>
       <label for="inputNumber" class="sr-only">CPF</label>
       <input type="text" id="inputNumber"  class="form-control" name="cpf" placeholder="CPF - somente os numeros" onkeypress="return onlynumber();" required autofocus value="{{old('cpf')}}">

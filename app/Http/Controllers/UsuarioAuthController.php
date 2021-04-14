@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\usuario;
+use Illuminate\Auth\Events\Validated;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Hast;
 use Illuminate\Support\Facades\Validator;
@@ -52,24 +54,20 @@ class UsuarioAuthController extends Controller
 
     function checage(Request $request){
 
-        $request->validate([
+        var_dump($request->all());
+
+        $credenciais = $this->validate($request,[
             'cpf' => 'required|max:50',
             'password' => 'required|min:6'
         ]);
-        $usuar = usuario::where('cpf','=',$request->cpf)->first();
-        if($usuar){
-            if(Hash::check($request->passoword, $usuar->password)){
 
-                //entrando para uma pagina de administrativa
-                $request->session()->put('Logando ....', $usuar->id);
-                return redirect()->perfilAdmin();
-
-            }else{
-                return back()->with('fail','Senha incorreta');
-            }
+        if(Auth::attempt($credenciais)){
+            return 'login OK';
         }else{
-            return back()->with('fail', 'usuario não cadastrado');
+            return back()->withErrors(['cpf' =>trans('auth.failed')])
+            ->withInput(request(['cpf']));
         }
+
     }
     function perfilAdmin(){
         return view('admin.profile');

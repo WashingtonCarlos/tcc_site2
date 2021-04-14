@@ -1,6 +1,6 @@
 @extends('master')
 @section('content')
-    <form class="form-signin" method ="POST" action = "{{url('/acesso')}}">
+    <form class="form-signin" method ="POST" action = "{{url('/logando')}}">
     {{csrf_field()}}
       <h1 class="h3 mb-3 font-weight-normal text-center">Faça login</h1>
       <label for="inputNumber" class="sr-only">CPF</label>

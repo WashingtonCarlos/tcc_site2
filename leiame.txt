@@ -1,0 +1,13 @@
+e ai Silverio 
+O problema do meu sistema e que quando vou cadastrar no formulario um novo usuario
+mais usando o mesmo email da uma erro de rota, avisando que o que a rota esta usando 
+um metodo GET ao em vez de POST, mas o metodo usado esta sendo POST, verifiquei que eu
+tinha validado o campo email no formulario para ser UNIQUE, o formulario cadastra normal
+quando quando uso o email novo que não consta no banco de dados, eu tinha colocado uma 
+validação para que gerasse um erro quando quando fosse colocado um email igual mais mesmo
+assim aparece o erro de "metodo invalido use POST ao inves de GET" ja tentei achar soluções
+na internet mais não resolvel
+O outro problema e na hora que eu faço login...criei as rotas certinho aonde ele tinha que
+buscar as informações so que não loga. Não sei te fala aonde esta o erro 
+To vendo tutorias na internet pra ver se faço igual ao deles mais não roda
+Não estou usando o metodo de AUTH do laravel pra controle de acesso estou fazendo personalizado 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\usuario;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Hast;
 use Illuminate\Support\Facades\Validator;
 
@@ -47,12 +48,6 @@ class UsuarioAuthController extends Controller
             $usuar->password = bcrypt($request->password);
             $usuar->nivel_de_acesso = $request->nivel_de_acesso;
             $usuar->save();
-
-            if($usuar) {
-                return back()->with('success', 'O usuario foi cadastrado com sucesso !!');
-            }else{
-                return back()->with('fail', 'Não foi possivel cadastrar o usuario !!');
-            }
     }
 
     function checage(Request $request){
@@ -61,5 +56,22 @@ class UsuarioAuthController extends Controller
             'cpf' => 'required|max:50',
             'password' => 'required|min:6'
         ]);
+        $usuar = usuario::where('cpf','=',$request->cpf)->first();
+        if($usuar){
+            if(Hash::check($request->passoword, $usuar->password)){
+
+                //entrando para uma pagina de administrativa
+                $request->session()->put('Logando ....', $usuar->id);
+                return redirect()->perfilAdmin();
+
+            }else{
+                return back()->with('fail','Senha incorreta');
+            }
+        }else{
+            return back()->with('fail', 'usuario não cadastrado');
+        }
+    }
+    function perfilAdmin(){
+        return view('admin.profile');
     }
 }

@@ -4,9 +4,11 @@
     {{csrf_field()}}
       <h1 class="h3 mb-3 font-weight-normal text-center">Faça login</h1>
       <label for="inputNumber" class="sr-only">CPF</label>
-      <input type="text" id="inputNumber"  class="form-control" name="cpf" placeholder="CPF - somente os numeros" onkeypress="return onlynumber();" required autofocus>
+      <input type="text" id="inputNumber"  class="form-control" name="cpf" placeholder="CPF - somente os numeros" onkeypress="return onlynumber();" required autofocus value="{{old('cpf')}}">
+      <span class="text-danger">@error('cpf') {{$message}} @enderror</span>
       <label for="inputPassword" class="sr-only">Senha</label>
       <input type="password" id="password" class="form-control" name="password" placeholder="Senha" required>
+      <span class="text-danger">@error('password') {{$message}} @enderror</span>
       <div class="checkbox mb-3">
         <label>
           <input type="checkbox" value="remember-me"> Lembrar de mim

@@ -19,3 +19,5 @@ use App\Http\Controllers\UsuarioAuthController;
 // });
 
 Route::get('/',[UsuarioAuthController::class, 'login']);
+Route::get('/registro',[UsuarioAuthController::class,'cadastro']);
+Route::post('/registrar',[UsuarioAuthController::class,'registro']);
